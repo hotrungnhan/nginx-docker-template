@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  server:
+    image: nginx:stable
+    ports:
+      - "80:80"
+    volumes:
+      - type: bind
+        source: "${PWD}/nginx.conf"
+        target: "/etc/nginx/nginx.conf"
+      - type: bind
+        source: "${PWD}/server/"
+        target: "/etc/nginx/conf.d/"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
